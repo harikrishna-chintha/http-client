@@ -1,7 +1,6 @@
 <h2>Http Client</h2>
 
-<button (click)="addUser()">Add</button>
-
+<h4>Data from Mock Data Service <button (click)="addUser()">Add</button></h4>
 <table border="true">
   @for(user of users; track user.name) {
     <tr>
@@ -10,6 +9,19 @@
       <td>Age - <b>{{user.age}}</b></td>
       <td><button (click)="updateUser(user.name)">Update</button></td>
       <td><button (click)="deleteUser(user.name)">Delete</button></td>
+    </tr>
+  }
+</table>
+<br /><br />
+
+<h4>Data from actual APIs</h4>
+<table border="true">
+  @for(post of postsFromRealAPI; track post.id) {
+    <tr>
+      <td>id - <b>{{post.id}}</b></td>
+      <td>User id - <b>{{post.userId}}</b></td>
+      <td>title - <b>{{post.title}}</b></td>
+      <td>body - <b>{{post.body}}</b></td>
     </tr>
   }
 </table>

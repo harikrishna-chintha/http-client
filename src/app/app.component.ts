@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AppService } from './app.service';
 import { User } from './services/data.service';
+import { ApiService, Post } from './services/api.service';
 
 @Component({
   selector: 'app-root',
@@ -14,9 +15,11 @@ export class AppComponent {
   title = 'http-client';
 
   users: User[] | undefined;
+  postsFromRealAPI: Post[] | undefined;
 
-  constructor(private appService: AppService) {
+  constructor(private appService: AppService, private apiService: ApiService) {
     this.getUsers();
+    this.getPosts();
   }
 
   getUsers() {
@@ -24,6 +27,13 @@ export class AppComponent {
       next: data => this.users = data,
       error: err => window.alert(err)
     })
+  }
+
+  getPosts() {
+    this.apiService.getPosts().subscribe(
+      data => this.postsFromRealAPI = data,
+      error => window.alert(error)
+    )
   }
 
   addUser() {
